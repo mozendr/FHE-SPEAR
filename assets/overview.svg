@@ -1,0 +1,477 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="'Times New Roman', 'Georgia', serif">
+  <defs>
+    <marker id="a" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#908caa"/></marker>
+    <marker id="aI" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#c4a7e7"/></marker>
+    <marker id="aF" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#9ccfd8"/></marker>
+    <marker id="aL" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#eb6f92"/></marker>
+    <marker id="aR" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#ebbcba"/></marker>
+    <marker id="aG" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#f6c177"/></marker>
+    <marker id="aP" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0.5 L6,2.5 L0,4.5" fill="#31748f"/></marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#191724"/>
+
+  <!-- ═══════════ TITLE ═══════════ -->
+  <text x="800" y="28" text-anchor="middle" font-size="17" fill="#e0def4" font-weight="bold" letter-spacing="0.5">FHE-SPEAR: End-to-End Homomorphic RAG with Softmax-Free Generation</text>
+  <line x1="200" y1="38" x2="1400" y2="38" stroke="#403d52" stroke-width="0.4"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (a) END-TO-END PIPELINE — left column   -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="280" y="62" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(a) End-to-end pipeline</text>
+
+  <!-- Client zone -->
+  <rect x="28" y="74" width="200" height="430" rx="4" fill="none" stroke="#31748f" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="128" y="89" text-anchor="middle" font-size="8.5" fill="#31748f" font-style="italic">Client (trusted)</text>
+
+  <!-- Server zone -->
+  <rect x="248" y="74" width="290" height="430" rx="4" fill="none" stroke="#c4a7e7" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="393" y="89" text-anchor="middle" font-size="8.5" fill="#c4a7e7" font-style="italic">Server (encrypted view only)</text>
+
+  <!-- Phase 1 label -->
+  <text x="260" y="108" font-size="9.5" fill="#ebbcba" font-style="italic">Phase 1 - Retrieval</text>
+
+  <!-- Query -->
+  <rect x="46" y="118" width="165" height="28" rx="3" fill="#1f1d2e" stroke="#9ccfd8" stroke-width="0.6"/>
+  <text x="128" y="136" text-anchor="middle" font-size="9.5" fill="#9ccfd8">Query q</text>
+
+  <!-- Arrow Enc(q) -->
+  <line x1="211" y1="132" x2="266" y2="132" stroke="#c4a7e7" stroke-width="0.8" marker-end="url(#aI)"/>
+  <text x="238" y="126" text-anchor="middle" font-size="7.5" fill="#c4a7e7">Enc(q)</text>
+
+  <!-- Similarity -->
+  <rect x="270" y="118" width="140" height="28" rx="3" fill="#26233a" stroke="#ebbcba" stroke-width="0.6"/>
+  <text x="340" y="131" text-anchor="middle" font-size="8.5" fill="#ebbcba">Enc(q) * Enc(d_i)</text>
+  <text x="340" y="142" text-anchor="middle" font-size="7" fill="#6e6a86">Lorentz bilinear form</text>
+
+  <!-- Corpus stack -->
+  <g transform="translate(424,118)">
+    <rect x="0" y="0" width="95" height="7" rx="1" fill="#26233a" stroke="#524f67" stroke-width="0.3" opacity="0.5"/>
+    <rect x="1" y="3.5" width="95" height="7" rx="1" fill="#26233a" stroke="#524f67" stroke-width="0.3" opacity="0.65"/>
+    <rect x="2" y="7" width="95" height="7" rx="1" fill="#26233a" stroke="#524f67" stroke-width="0.3" opacity="0.8"/>
+    <rect x="3" y="10.5" width="95" height="10" rx="1" fill="#26233a" stroke="#524f67" stroke-width="0.4"/>
+    <text x="50" y="19" text-anchor="middle" font-size="7" fill="#908caa" font-style="italic">n encrypted docs</text>
+  </g>
+  <line x1="424" y1="135" x2="410" y2="132" stroke="#908caa" stroke-width="0.5" marker-end="url(#a)"/>
+
+  <!-- Scores back -->
+  <path d="M340,146 L340,158 Q340,163 325,163 L222,163" stroke="#ebbcba" stroke-width="0.7" fill="none" marker-end="url(#aR)" stroke-dasharray="3,2"/>
+  <text x="280" y="158" text-anchor="middle" font-size="7" fill="#ebbcba">Enc(scores)</text>
+
+  <!-- Select top-k -->
+  <rect x="46" y="168" width="165" height="24" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.6"/>
+  <text x="128" y="184" text-anchor="middle" font-size="9" fill="#e0def4">Decrypt scores, select top-k</text>
+
+  <!-- Phase 2 divider -->
+  <line x1="34" y1="204" x2="530" y2="204" stroke="#403d52" stroke-width="0.3" stroke-dasharray="2,3"/>
+  <text x="260" y="220" font-size="9.5" fill="#ebbcba" font-style="italic">Phase 2 - Generation (per tok)</text>
+
+  <!-- Prefill -->
+  <rect x="46" y="230" width="165" height="32" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.6"/>
+  <text x="128" y="246" text-anchor="middle" font-size="9" fill="#e0def4">Plaintext prefill</text>
+  <text x="128" y="258" text-anchor="middle" font-size="6.5" fill="#6e6a86">passage + query to RWKV state</text>
+
+  <!-- Encrypt x_t -->
+  <rect x="66" y="274" width="125" height="24" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.6"/>
+  <text x="128" y="290" text-anchor="middle" font-size="9" fill="#9ccfd8">Enc(x_t)</text>
+  <line x1="128" y1="262" x2="128" y2="272" stroke="#31748f" stroke-width="0.5" marker-end="url(#aP)"/>
+
+  <!-- Arrow to RWKV -->
+  <line x1="191" y1="286" x2="276" y2="286" stroke="#c4a7e7" stroke-width="0.8" marker-end="url(#aI)"/>
+
+  <!-- RWKV tower -->
+  <rect x="280" y="234" width="230" height="146" rx="4" fill="#26233a" stroke="#c4a7e7" stroke-width="0.7"/>
+  <text x="395" y="252" text-anchor="middle" font-size="9.5" fill="#c4a7e7" font-weight="bold">RWKV-7  24 blocks</text>
+  <!-- Block layers -->
+  <g>
+    <rect x="296" y="260" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.07"/>
+    <rect x="296" y="265" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.09"/>
+    <rect x="296" y="270" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.11"/>
+    <rect x="296" y="275" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.13"/>
+    <rect x="296" y="280" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.15"/>
+    <rect x="296" y="285" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.17"/>
+    <rect x="296" y="290" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.19"/>
+    <rect x="296" y="295" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.21"/>
+    <rect x="296" y="300" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.23"/>
+    <rect x="296" y="305" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.25"/>
+    <rect x="296" y="310" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.27"/>
+    <rect x="296" y="315" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.29"/>
+    <rect x="296" y="320" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.31"/>
+    <rect x="296" y="325" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.33"/>
+    <rect x="296" y="330" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.35"/>
+    <rect x="296" y="335" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.37"/>
+    <rect x="296" y="340" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.39"/>
+    <rect x="296" y="345" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.41"/>
+    <rect x="296" y="350" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.43"/>
+    <rect x="296" y="355" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.45"/>
+    <rect x="296" y="360" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.47"/>
+    <rect x="296" y="365" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.49"/>
+    <rect x="296" y="370" width="198" height="4" rx="0.5" fill="#c4a7e7" opacity="0.51"/>
+  </g>
+  <text x="500" y="316" font-size="6.5" fill="#6e6a86" transform="rotate(90,500,316)">8 BSGS/blk</text>
+  <text x="294" y="378" font-size="6.5" fill="#6e6a86">24</text>
+
+  <!-- Client nonlinear loop -->
+  <rect x="46" y="322" width="165" height="34" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.6"/>
+  <text x="128" y="338" text-anchor="middle" font-size="8.5" fill="#9ccfd8">Dec -> nonlinear ops -> Enc</text>
+  <text x="128" y="350" text-anchor="middle" font-size="7" fill="#6e6a86">LayerNorm, WKV, ReLU^2, gating</text>
+
+  <!-- Arrow from RWKV to client -->
+  <path d="M280,340 L222,340" stroke="#c4a7e7" stroke-width="0.6" fill="none" marker-end="url(#aI)" stroke-dasharray="3,2"/>
+  <text x="252" y="335" text-anchor="middle" font-size="6.5" fill="#c4a7e7">Enc(Wx)</text>
+
+  <!-- Loop back arrow -->
+  <path d="M128,356 L128,372 Q128,378 138,378 L183,378 Q191,378 191,370 L191,300" stroke="#908caa" stroke-width="0.5" fill="none" marker-end="url(#a)" stroke-dasharray="2,2"/>
+  <text x="70" y="374" font-size="6.5" fill="#6e6a86">x96 round-trips/tok</text>
+
+  <!-- Output -->
+  <rect x="46" y="398" width="165" height="26" rx="3" fill="#1f1d2e" stroke="#f6c177" stroke-width="0.7"/>
+  <text x="128" y="415" text-anchor="middle" font-size="9.5" fill="#f6c177">"$15 million." (corr. 1.0)</text>
+  <line x1="128" y1="356" x2="128" y2="396" stroke="#f6c177" stroke-width="0.5" marker-end="url(#aG)"/>
+
+
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (b) SINGLE RWKV-7 BLOCK — right column  -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="910" y="62" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(b) Single RWKV-7 block (client-aided)</text>
+
+  <!-- Legend inline -->
+  <rect x="1100" y="53" width="30" height="10" rx="2" fill="#26233a" stroke="#c4a7e7" stroke-width="0.4"/>
+  <text x="1136" y="62" font-size="7.5" fill="#c4a7e7">server</text>
+  <rect x="1168" y="53" width="30" height="10" rx="2" fill="#1f1d2e" stroke="#31748f" stroke-width="0.4"/>
+  <text x="1204" y="62" font-size="7.5" fill="#9ccfd8">client</text>
+
+  <!-- x_in -->
+  <text x="910" y="86" text-anchor="middle" font-size="10" fill="#e0def4" font-style="italic">x_in (encrypted)</text>
+  <line x1="910" y1="92" x2="910" y2="104" stroke="#908caa" stroke-width="0.6" marker-end="url(#a)"/>
+
+  <!-- S1: Time-mix projections -->
+  <rect x="610" y="107" width="600" height="42" rx="3" fill="#26233a" stroke="#c4a7e7" stroke-width="0.7"/>
+  <text x="625" y="125" font-size="9.5" fill="#e0def4">Time-mix projections:  r, k, v = W_r x,  W_k x,  W_v x ;  output gate W_o</text>
+  <text x="1190" y="140" text-anchor="end" font-size="7.5" fill="#c4a7e7">3+1 BSGS matmuls</text>
+
+  <!-- dec -->
+  <line x1="910" y1="149" x2="910" y2="165" stroke="#eb6f92" stroke-width="0.5" marker-end="url(#aL)"/>
+  <text x="920" y="160" font-size="6.5" fill="#eb6f92">dec</text>
+
+  <!-- C1: WKV + gating -->
+  <rect x="610" y="168" width="600" height="44" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.7"/>
+  <text x="625" y="186" font-size="9.5" fill="#e0def4">g = sigma(W_g x);  s = w*s + v*k^T;  out = g * GN(s*r) + LN + skip</text>
+
+  <!-- enc -->
+  <line x1="910" y1="212" x2="910" y2="228" stroke="#c4a7e7" stroke-width="0.5" marker-end="url(#aI)"/>
+  <text x="920" y="223" font-size="6.5" fill="#c4a7e7">enc</text>
+
+  <!-- S2: FFN key -->
+  <rect x="610" y="231" width="600" height="34" rx="3" fill="#26233a" stroke="#c4a7e7" stroke-width="0.7"/>
+  <text x="625" y="252" font-size="9.5" fill="#e0def4">FFN key projection:  k_ffn = W_key x</text>
+  <text x="1190" y="252" text-anchor="end" font-size="7.5" fill="#c4a7e7">2 complex-packed BSGS (d d -> 4d#x2192; 4d)</text>
+
+  <!-- dec -->
+  <line x1="910" y1="265" x2="910" y2="281" stroke="#eb6f92" stroke-width="0.5" marker-end="url(#aL)"/>
+  <text x="920" y="276" font-size="6.5" fill="#eb6f92">dec</text>
+
+  <!-- C2: ReLU^2 -->
+  <rect x="610" y="284" width="600" height="28" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.7"/>
+  <text x="625" y="302" font-size="9.5" fill="#e0def4">Activation:  k_ffn = ReLU(k_ffn)^2</text>
+  <text x="1190" y="302" text-anchor="end" font-size="7.5" fill="#9ccfd8">client-side, exact (plaintext squaring)</text>
+
+  <!-- enc -->
+  <line x1="910" y1="312" x2="910" y2="328" stroke="#c4a7e7" stroke-width="0.5" marker-end="url(#aI)"/>
+  <text x="920" y="323" font-size="6.5" fill="#c4a7e7">enc</text>
+
+  <!-- S3: FFN value -->
+  <rect x="610" y="331" width="600" height="34" rx="3" fill="#26233a" stroke="#c4a7e7" stroke-width="0.7"/>
+  <text x="625" y="352" font-size="9.5" fill="#e0def4">FFN value projection:  v_ffn = W_val k^2_ffn</text>
+  <text x="1190" y="352" text-anchor="end" font-size="7.5" fill="#c4a7e7">2 complex-packed BSGS (4d 4d -> d#x2192; d)</text>
+
+  <!-- dec -->
+  <line x1="910" y1="365" x2="910" y2="381" stroke="#eb6f92" stroke-width="0.5" marker-end="url(#aL)"/>
+  <text x="920" y="376" font-size="6.5" fill="#eb6f92">dec</text>
+
+  <!-- C3: Residual -->
+  <rect x="610" y="384" width="600" height="26" rx="3" fill="#1f1d2e" stroke="#31748f" stroke-width="0.7"/>
+  <text x="625" y="401" font-size="9.5" fill="#e0def4">Skip connection:  x = x + v_ffn</text>
+
+  <!-- x_out -->
+  <line x1="910" y1="410" x2="910" y2="426" stroke="#908caa" stroke-width="0.6" marker-end="url(#a)"/>
+  <text x="910" y="440" text-anchor="middle" font-size="10" fill="#e0def4" font-style="italic">x_out (encrypted, next block)</text>
+
+  <!-- Right brace -->
+  <path d="M1218,112 Q1226,112 1226,128 L1226,248 Q1226,262 1234,262 Q1226,262 1226,276 L1226,360 Q1226,372 1218,372" stroke="#524f67" stroke-width="0.6" fill="none"/>
+  <text x="1242" y="244" font-size="8" fill="#908caa">8 BSGS</text>
+  <text x="1242" y="256" font-size="8" fill="#908caa">per block</text>
+  <text x="1242" y="276" font-size="8" fill="#908caa">x 24 blks</text>
+  <text x="1242" y="296" font-size="8" fill="#f6c177">= 192 matmuls</text>
+
+  <!-- Bottom note for (b) -->
+  <text x="910" y="462" text-anchor="middle" font-size="8" fill="#6e6a86">BSGS diagonal decomposition: G + B - 2 = 89 rotations per matmul at d=2048  (naive per-element: d * log2(d) = 22,528)</text>
+  <text x="910" y="476" text-anchor="middle" font-size="8" fill="#6e6a86">Each BSGS call consumes 1 multiplicative level, independent of d.  4 round-trips per block, 96 per token.</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (f) LORENTZ ENCODING — top right        -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="1420" y="88" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(f) Lorentz hyperbolic encoding</text>
+
+  <text x="1310" y="114" font-size="9" fill="#908caa" font-style="italic">Bilinear form (FHE-compatible):</text>
+  <text x="1310" y="136" font-size="10.5" fill="#e0def4">  &lt;q, d&gt;_L = -q_0 d_0 + sum_{i&gt;0} q_i d_i</text>
+
+  <text x="1310" y="166" font-size="8.5" fill="#908caa">Complex-packed query slot layout:</text>
+
+  <!-- Slot 0: negated time component -->
+  <rect x="1310" y="176" width="48" height="42" rx="2" fill="none" stroke="#eb6f92" stroke-width="0.6"/>
+  <rect x="1312" y="178" width="44" height="18" rx="1" fill="#eb6f92" opacity="0.12"/>
+  <text x="1334" y="191" text-anchor="middle" font-size="8" fill="#eb6f92">-q_0</text>
+  <line x1="1312" y1="197" x2="1356" y2="197" stroke="#403d52" stroke-width="0.3"/>
+  <rect x="1312" y="198" width="44" height="18" rx="1" fill="#f6c177" opacity="0.12"/>
+  <text x="1334" y="211" text-anchor="middle" font-size="8" fill="#f6c177">q_1</text>
+  <text x="1334" y="228" text-anchor="middle" font-size="7" fill="#6e6a86">j=0</text>
+
+  <!-- Slot 1: normal conjugate -->
+  <rect x="1366" y="176" width="48" height="42" rx="2" fill="none" stroke="#c4a7e7" stroke-width="0.6"/>
+  <rect x="1368" y="178" width="44" height="18" rx="1" fill="#31748f" opacity="0.2"/>
+  <text x="1390" y="191" text-anchor="middle" font-size="8" fill="#9ccfd8">q_2</text>
+  <line x1="1368" y1="197" x2="1412" y2="197" stroke="#403d52" stroke-width="0.3"/>
+  <rect x="1368" y="198" width="44" height="18" rx="1" fill="#f6c177" opacity="0.12"/>
+  <text x="1390" y="211" text-anchor="middle" font-size="8" fill="#f6c177">-q_3</text>
+  <text x="1390" y="228" text-anchor="middle" font-size="7" fill="#6e6a86">j=1</text>
+
+  <!-- Slot 2 -->
+  <rect x="1422" y="176" width="48" height="42" rx="2" fill="none" stroke="#c4a7e7" stroke-width="0.6"/>
+  <rect x="1424" y="178" width="44" height="18" rx="1" fill="#31748f" opacity="0.2"/>
+  <text x="1446" y="191" text-anchor="middle" font-size="8" fill="#9ccfd8">q_4</text>
+  <line x1="1424" y1="197" x2="1468" y2="197" stroke="#403d52" stroke-width="0.3"/>
+  <rect x="1424" y="198" width="44" height="18" rx="1" fill="#f6c177" opacity="0.12"/>
+  <text x="1446" y="211" text-anchor="middle" font-size="8" fill="#f6c177">-q_5</text>
+  <text x="1446" y="228" text-anchor="middle" font-size="7" fill="#6e6a86">j=2</text>
+
+  <!-- Dots -->
+  <text x="1482" y="200" font-size="9" fill="#524f67">...</text>
+
+  <!-- Annotation -->
+  <text x="1310" y="248" font-size="7.5" fill="#eb6f92">Slot 0: time component negated</text>
+  <text x="1310" y="262" font-size="7.5" fill="#6e6a86">Slots j&gt;0: standard conjugate packing</text>
+  <text x="1310" y="276" font-size="7.5" fill="#6e6a86">+2.5% R@10 on MS-MARCO vs Euclidean</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (g) FHE-Sim — below Lorentz             -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="1420" y="306" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(g) FHE-Sim</text>
+
+  <text x="1310" y="328" font-size="9.5" fill="#f6c177" font-style="italic">Prediction formula:</text>
+  <text x="1310" y="348" font-size="11" fill="#e0def4">rho_FHE = rho_compress * rho_noise</text>
+  <text x="1310" y="368" font-size="8.5" fill="#908caa">rho_noise = sigma_z / sqrt(sigma_z^2 + sigma_eps^2)</text>
+  <text x="1310" y="384" font-size="8.5" fill="#908caa">sigma_eps = c * sqrt(d),   c ~ 0.0028,   R^2 = 0.98</text>
+
+  <!-- Mini scatter: predicted vs actual -->
+  <!-- Axes -->
+  <line x1="1316" y1="480" x2="1316" y2="400" stroke="#524f67" stroke-width="0.5"/>
+  <line x1="1316" y1="480" x2="1500" y2="480" stroke="#524f67" stroke-width="0.5"/>
+  <!-- Axis labels -->
+  <text x="1408" y="495" text-anchor="middle" font-size="7" fill="#6e6a86">Predicted rho</text>
+  <text x="1304" y="440" text-anchor="middle" font-size="7" fill="#6e6a86" transform="rotate(-90,1304,440)">Actual rho</text>
+  <!-- Tick marks: 0 and 1 -->
+  <text x="1316" y="492" text-anchor="middle" font-size="6" fill="#524f67">0</text>
+  <text x="1500" y="492" text-anchor="middle" font-size="6" fill="#524f67">1</text>
+  <text x="1308" y="480" text-anchor="end" font-size="6" fill="#524f67">0</text>
+  <text x="1308" y="403" text-anchor="end" font-size="6" fill="#524f67">1</text>
+
+  <!-- Perfect prediction line (dashed) -->
+  <line x1="1316" y1="480" x2="1500" y2="400" stroke="#524f67" stroke-width="0.4" stroke-dasharray="3,2"/>
+
+  <!-- Data points: SVD models (high rho, near diagonal) -->
+  <!-- OpenAI SVD: pred 0.949, actual 0.933 -->
+  <circle cx="1491" cy="405" r="3" fill="#9ccfd8" opacity="0.8"/>
+  <!-- BERT SVD: pred 0.985, actual 0.983 -->
+  <circle cx="1497" cy="401" r="3" fill="#9ccfd8" opacity="0.8"/>
+  <!-- OpenAI SVD 2: pred 0.973, actual 0.969 -->
+  <circle cx="1495" cy="403" r="3" fill="#9ccfd8" opacity="0.8"/>
+  <!-- BERT SVD 2: pred 0.972, actual 0.978 -->
+  <circle cx="1495" cy="404" r="3" fill="#9ccfd8" opacity="0.8"/>
+
+  <!-- InfoNCE / signal dilution points (low rho) -->
+  <!-- pred 0.764, actual 0.771 -->
+  <circle cx="1457" cy="418" r="3" fill="#eb6f92" opacity="0.7"/>
+  <!-- pred 0.288, actual 0.290 -->
+  <circle cx="1369" cy="457" r="3" fill="#eb6f92" opacity="0.7"/>
+  <!-- pred 0.016, actual 0.031 -->
+  <circle cx="1319" cy="478" r="3" fill="#eb6f92" opacity="0.7"/>
+
+  <!-- Legend right of plot -->
+  <circle cx="1508" cy="430" r="2.5" fill="#9ccfd8" opacity="0.8"/>
+  <text x="1514" y="433" font-size="6.5" fill="#9ccfd8">embedding</text>
+  <text x="1514" y="442" font-size="6.5" fill="#9ccfd8">models</text>
+  <circle cx="1508" cy="456" r="2.5" fill="#eb6f92" opacity="0.7"/>
+  <text x="1514" y="459" font-size="6.5" fill="#eb6f92">signal</text>
+  <text x="1514" y="468" font-size="6.5" fill="#eb6f92">dilution</text>
+
+  <!-- Mean error annotation -->
+  <text x="1340" y="416" font-size="7.5" fill="#f6c177">0.7% mean error</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (c) COMPLEX PACKING                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="200" y="530" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(c) Complex packing</text>
+
+  <!-- Vertical packing label -->
+  <text x="36" y="556" font-size="9" fill="#ebbcba">Standard (real only)</text>
+  <text x="36" y="574" font-size="7" fill="#6e6a86">Re</text>
+  <text x="36" y="596" font-size="7" fill="#6e6a86">Im</text>
+
+  <g transform="translate(56,562)">
+    <g><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e0</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <g transform="translate(36,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e1</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <g transform="translate(72,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e2</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <g transform="translate(108,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e3</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <g transform="translate(144,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e4</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <g transform="translate(180,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.5"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e5</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#403d52" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#524f67">0</text></g>
+    <text x="220" y="22" font-size="8" fill="#524f67">...</text>
+  </g>
+  <text x="56" y="614" font-size="7.5" fill="#6e6a86">d slots, imaginary part wasted</text>
+
+  <!-- Arrow between -->
+  <text x="200" y="642" text-anchor="middle" font-size="10" fill="#908caa">|</text>
+  <text x="200" y="648" text-anchor="middle" font-size="10" fill="#908caa">v</text>
+
+  <!-- Complex packing -->
+  <text x="36" y="666" font-size="9" fill="#c4a7e7">Complex (Re + Im)</text>
+  <text x="36" y="684" font-size="7" fill="#6e6a86">Re</text>
+  <text x="36" y="706" font-size="7" fill="#6e6a86">Im</text>
+
+  <g transform="translate(56,672)">
+    <g><rect width="32" height="38" rx="2" fill="none" stroke="#c4a7e7" stroke-width="0.6"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e0</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#f6c177" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#f6c177">e1</text></g>
+    <g transform="translate(36,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#c4a7e7" stroke-width="0.6"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e2</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#f6c177" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#f6c177">e3</text></g>
+    <g transform="translate(72,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#c4a7e7" stroke-width="0.6"/><rect x="2" y="2" width="28" height="16" rx="1" fill="#31748f" opacity="0.25"/><text x="16" y="13" text-anchor="middle" font-size="8" fill="#9ccfd8">e4</text><line x1="2" y1="19" x2="30" y2="19" stroke="#403d52" stroke-width="0.3"/><rect x="2" y="20" width="28" height="16" rx="1" fill="#f6c177" opacity="0.15"/><text x="16" y="31" text-anchor="middle" font-size="8" fill="#f6c177">e5</text></g>
+    <g transform="translate(108,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.4" stroke-dasharray="3,2"/></g>
+    <g transform="translate(144,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.4" stroke-dasharray="3,2"/></g>
+    <g transform="translate(180,0)"><rect width="32" height="38" rx="2" fill="none" stroke="#524f67" stroke-width="0.4" stroke-dasharray="3,2"/></g>
+    <text x="220" y="22" font-size="8" fill="#524f67">...</text>
+  </g>
+
+  <!-- Braces -->
+  <path d="M56,716 L56,720 Q56,724 62,724 L147,724 Q153,724 153,720 L153,716" stroke="#c4a7e7" stroke-width="0.5" fill="none"/>
+  <text x="105" y="736" text-anchor="middle" font-size="7.5" fill="#c4a7e7">d/2 slots used</text>
+
+  <!-- Equations -->
+  <text x="36" y="758" font-size="8" fill="#908caa">Doc:  slot_j = e_{2j} + i * e_{2j+1}</text>
+  <text x="36" y="772" font-size="8" fill="#908caa">Query: slot_j = q_{2j} - i * q_{2j+1}</text>
+  <text x="36" y="786" font-size="8" fill="#908caa">Re(sum slot_q * slot_d) = inner product(q, d)</text>
+  <text x="36" y="804" font-size="7.5" fill="#6e6a86">Halves ciphertext count. Used in both retrieval and FFN projections.</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (d) BSGS DIAGONAL METHOD                -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="680" y="530" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(d) BSGS diagonal method</text>
+
+  <!-- Matrix with colored diagonals -->
+  <g transform="translate(560,546)">
+    <rect x="0" y="0" width="80" height="80" fill="none" stroke="#524f67" stroke-width="0.5"/>
+    <!-- Diagonal lines -->
+    <line x1="0" y1="0" x2="80" y2="80" stroke="#c4a7e7" stroke-width="2" opacity="0.45"/>
+    <line x1="10" y1="0" x2="80" y2="70" stroke="#9ccfd8" stroke-width="1.5" opacity="0.35"/>
+    <line x1="20" y1="0" x2="80" y2="60" stroke="#f6c177" stroke-width="1.3" opacity="0.3"/>
+    <line x1="30" y1="0" x2="80" y2="50" stroke="#ebbcba" stroke-width="1.2" opacity="0.25"/>
+    <line x1="0" y1="10" x2="70" y2="80" stroke="#eb6f92" stroke-width="1.5" opacity="0.3"/>
+    <line x1="0" y1="20" x2="60" y2="80" stroke="#31748f" stroke-width="1.3" opacity="0.25"/>
+    <!-- Grid -->
+    <line x1="0" y1="20" x2="80" y2="20" stroke="#403d52" stroke-width="0.2"/>
+    <line x1="0" y1="40" x2="80" y2="40" stroke="#403d52" stroke-width="0.2"/>
+    <line x1="0" y1="60" x2="80" y2="60" stroke="#403d52" stroke-width="0.2"/>
+    <line x1="20" y1="0" x2="20" y2="80" stroke="#403d52" stroke-width="0.2"/>
+    <line x1="40" y1="0" x2="40" y2="80" stroke="#403d52" stroke-width="0.2"/>
+    <line x1="60" y1="0" x2="60" y2="80" stroke="#403d52" stroke-width="0.2"/>
+    <text x="40" y="-6" text-anchor="middle" font-size="9" fill="#908caa" font-style="italic">W</text>
+  </g>
+
+  <!-- Equals and decomposition -->
+  <g transform="translate(660,562)">
+    <text x="0" y="24" font-size="13" fill="#908caa">=</text>
+    <text x="22" y="12" font-size="9" fill="#e0def4">d-1</text>
+    <text x="20" y="28" font-size="11" fill="#e0def4">Sum  rot(x, k) * delta_k</text>
+    <text x="22" y="42" font-size="9" fill="#e0def4">k=0</text>
+    <text x="20" y="62" font-size="7.5" fill="#6e6a86">delta_k[j] = W[j, (j+k) mod d]</text>
+  </g>
+
+  <!-- BSGS factoring -->
+  <g transform="translate(560,648)">
+    <text x="0" y="0" font-size="9" fill="#e0def4">BSGS factoring:  k = g*G + b</text>
+    <text x="0" y="16" font-size="8.5" fill="#908caa">G = ceil(sqrt(d)),  B = ceil(d/G)</text>
+    <text x="0" y="34" font-size="8.5" fill="#908caa">Rotations per matmul:  G + B - 2</text>
+
+    <!-- Comparison bars -->
+    <text x="0" y="58" font-size="8.5" fill="#eb6f92">Naive:</text>
+    <rect x="50" y="50" width="200" height="7" rx="1.5" fill="#eb6f92" opacity="0.25"/>
+    <text x="256" y="58" font-size="7" fill="#eb6f92">22,528 (naive)</text>
+
+    <text x="0" y="76" font-size="8.5" fill="#c4a7e7">BSGS:</text>
+    <rect x="50" y="69" width="0.8" height="7" rx="0.5" fill="#c4a7e7"/>
+    <circle cx="51" cy="72.5" r="2.5" fill="#c4a7e7" opacity="0.8"/>
+    <text x="60" y="76" font-size="7" fill="#c4a7e7">89</text>
+  </g>
+
+  <text x="680" y="750" text-anchor="middle" font-size="8" fill="#6e6a86">1 multiplicative level consumed per matmul, independent of d.</text>
+  <text x="680" y="764" text-anchor="middle" font-size="8" fill="#6e6a86">Complex packing halves FFN calls:  dd->4d#x2192;4d and 4d4d->d#x2192;d each use 2 BSGS instead of 4.</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- (e) ACCESS CONTROL                      -->
+  <!-- ═══════════════════════════════════════ -->
+  <text x="1200" y="530" text-anchor="middle" font-size="12.5" fill="#e0def4" font-weight="bold">(e) Per-user access control</text>
+
+  <!-- Stored corpus -->
+  <rect x="1095" y="546" width="210" height="30" rx="3" fill="#26233a" stroke="#524f67" stroke-width="0.5"/>
+  <text x="1200" y="560" text-anchor="middle" font-size="8.5" fill="#e0def4">Restricted passage e_j</text>
+  <text x="1200" y="572" text-anchor="middle" font-size="7" fill="#6e6a86">classified: financial / personal / temporal</text>
+
+  <!-- Arrow down -->
+  <line x1="1200" y1="576" x2="1200" y2="590" stroke="#908caa" stroke-width="0.5" marker-end="url(#a)"/>
+
+  <!-- Noised storage -->
+  <rect x="1110" y="593" width="180" height="26" rx="3" fill="#26233a" stroke="#f6c177" stroke-width="0.6"/>
+  <text x="1200" y="610" text-anchor="middle" font-size="8.5" fill="#f6c177">Stored as  Enc(e_j + n_c),  a=100</text>
+
+  <!-- Fork line -->
+  <line x1="1200" y1="619" x2="1200" y2="632" stroke="#908caa" stroke-width="0.4"/>
+  <line x1="1115" y1="632" x2="1285" y2="632" stroke="#908caa" stroke-width="0.4"/>
+
+  <!-- Alice / Bob labels above branches -->
+  <text x="1115" y="628" text-anchor="middle" font-size="7.5" fill="#9ccfd8">Alice (authorized)</text>
+  <text x="1285" y="628" text-anchor="middle" font-size="7.5" fill="#eb6f92">Bob (unauthorized)</text>
+
+  <!-- Alice branch -->
+  <line x1="1115" y1="632" x2="1115" y2="650" stroke="#9ccfd8" stroke-width="0.6" marker-end="url(#aF)"/>
+  <rect x="1055" y="653" width="120" height="24" rx="3" fill="#1f1d2e" stroke="#9ccfd8" stroke-width="0.6"/>
+  <text x="1115" y="669" text-anchor="middle" font-size="8.5" fill="#9ccfd8">Enc(-n_c)  (real)</text>
+
+  <line x1="1115" y1="677" x2="1115" y2="695" stroke="#9ccfd8" stroke-width="0.4" marker-end="url(#aF)"/>
+  <rect x="1058" y="698" width="114" height="20" rx="3" fill="#26233a" stroke="#9ccfd8" stroke-width="0.4"/>
+  <text x="1115" y="712" text-anchor="middle" font-size="7.5" fill="#9ccfd8">noise cancels: Enc(e_j)</text>
+
+  <line x1="1115" y1="718" x2="1115" y2="736" stroke="#9ccfd8" stroke-width="0.4" marker-end="url(#aF)"/>
+  <rect x="1065" y="739" width="100" height="18" rx="3" fill="#1f1d2e" stroke="#9ccfd8" stroke-width="0.4"/>
+  <text x="1115" y="751" text-anchor="middle" font-size="7.5" fill="#9ccfd8">correct retrieval</text>
+
+  <line x1="1115" y1="757" x2="1115" y2="775" stroke="#f6c177" stroke-width="0.4" marker-end="url(#aG)"/>
+  <rect x="1060" y="778" width="110" height="22" rx="3" fill="#1f1d2e" stroke="#f6c177" stroke-width="0.6"/>
+  <text x="1115" y="793" text-anchor="middle" font-size="9" fill="#f6c177">"$15 million."</text>
+
+  <!-- Bob branch -->
+  <line x1="1285" y1="632" x2="1285" y2="650" stroke="#eb6f92" stroke-width="0.6" marker-end="url(#aL)"/>
+  <rect x="1225" y="653" width="120" height="24" rx="3" fill="#1f1d2e" stroke="#eb6f92" stroke-width="0.6"/>
+  <text x="1285" y="669" text-anchor="middle" font-size="8.5" fill="#eb6f92">Enc(r)  (dummy)</text>
+
+  <line x1="1285" y1="677" x2="1285" y2="695" stroke="#eb6f92" stroke-width="0.4" marker-end="url(#aL)"/>
+  <rect x="1228" y="698" width="114" height="20" rx="3" fill="#26233a" stroke="#eb6f92" stroke-width="0.4"/>
+  <text x="1285" y="712" text-anchor="middle" font-size="7.5" fill="#eb6f92">noise persists (181x)</text>
+
+  <line x1="1285" y1="718" x2="1285" y2="736" stroke="#eb6f92" stroke-width="0.4" marker-end="url(#aL)"/>
+  <rect x="1240" y="739" width="90" height="18" rx="3" fill="#1f1d2e" stroke="#eb6f92" stroke-width="0.4"/>
+  <text x="1285" y="751" text-anchor="middle" font-size="7.5" fill="#eb6f92">retrieval miss</text>
+
+  <line x1="1285" y1="757" x2="1285" y2="775" stroke="#908caa" stroke-width="0.4" marker-end="url(#a)"/>
+  <rect x="1230" y="778" width="110" height="22" rx="3" fill="#1f1d2e" stroke="#524f67" stroke-width="0.4"/>
+  <text x="1285" y="793" text-anchor="middle" font-size="8" fill="#6e6a86">"~$10 million."</text>
+
+
+
+</svg>
